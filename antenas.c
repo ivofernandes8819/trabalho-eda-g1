@@ -4,7 +4,9 @@
  *  @date 2025-03-30
  *  @project Trabalho pratico EDA - Grupo I
  */
-#include "antenas.h"
+
+//#include "antenas.h"
+#include "dados.h"
 #include <stdbool.h>
 #include <string.h>
 

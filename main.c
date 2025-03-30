@@ -5,7 +5,7 @@
  *  @project Trabalho pratico EDA - Grupo I
  */
 
-#include "antenas.h"
+#include "dados.h"
 #include "antenas.c"
 #include <stdio.h>
 
@@ -16,7 +16,7 @@ int main() {
     // CRIA LISTA LIGADA ANTENA
     ListaLigadaAntenas* lista = criarLista();
     // ** CARREGA FICHEIRO
-    carregarFicheiro(lista, "/Users/ivofernandes/Documents/PERSONAL/LESI/PROJECTS/a8819/antenas.txt");
+    carregarFicheiro(lista, "./../antenas.txt");
 
     #pragma endregion
 
@@ -54,7 +54,7 @@ int main() {
 
     #pragma region GRAVAR_FICHEIRO
     // ** GRAVAR DADOS FICHEIRO **
-    //gravarDadosFicheiro("/Users/ivofernandes/Documents/PERSONAL/LESI/PROJECTS/a8819/antenas_out.txt", lista);
+    //gravarDadosFicheiro("./../antenas_out.txt", lista);
     #pragma endregion
     
     return 0;
