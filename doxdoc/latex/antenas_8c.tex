@@ -1,0 +1,168 @@
+\doxysection{antenas.\+c File Reference}
+\hypertarget{antenas_8c}{}\label{antenas_8c}\index{antenas.c@{antenas.c}}
+{\ttfamily \#include "{}antenas.\+h"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for antenas.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{antenas_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{antenas_8c_aa8d0fed68fb286ca308031251b7ed7fe}{criar\+Lista}} ()
+\begin{DoxyCompactList}\small\item\em Cria e inicializa uma nova lista ligada para armazenar antenas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{antenas_8c_a1c7279d3d1773b4f05d486c571cd3c7e}{inserir\+Antena}} (\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}lista, char frequencia, int x, int y)
+\begin{DoxyCompactList}\small\item\em insere uma nova antena em uma lista ligada de antenas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{antenas_8c_a56a24ae78bb8022211165428a933c8fa}{remover\+Antena}} (\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}lista, int x, int y)
+\begin{DoxyCompactList}\small\item\em Remove uma antena específica da lista ligada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{antenas_8c_a1c94c0f103d6f7a8803d1c1fc794ec5c}{listar\+Antenas}} (\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}lista)
+\begin{DoxyCompactList}\small\item\em Lista antenas com base nas coordenadas do caractere no ficheiro. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{antenas_8c_af9ba0eb85c7192b5773fe57ebdd132fb}{carregar\+Ficheiro}} (\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}lista, const char \texorpdfstring{$\ast$}{*}nome\+Ficheiro)
+\begin{DoxyCompactList}\small\item\em Função que carrega items existentes no ficheiro. A posição do caractere no ficheiro representa as suas coordenadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{antenas_8c_a523d4767560ddfcc26aaad2cbfb86fe3}{detectar\+Efeito\+Nefasto}} (\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}lista)
+\begin{DoxyCompactList}\small\item\em Detecta o efeito nefasto causado por antenas com a mesma frequência localizadas na mesma linha (coordenada x). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{antenas_8c_a83a8adaeb1f71650f8cbd48e66ff5c7f}{gravar\+Dados\+Ficheiro}} (const char \texorpdfstring{$\ast$}{*}nome\+Ficheiro, \mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}lista)
+\begin{DoxyCompactList}\small\item\em grava dados no ficheiro binário \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Ivo Fernandes \texorpdfstring{$\vert$}{|} 8819 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/03-\/30 @project Trabalho pratico EDA -\/ Grupo I 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{antenas_8c_af9ba0eb85c7192b5773fe57ebdd132fb}\index{antenas.c@{antenas.c}!carregarFicheiro@{carregarFicheiro}}
+\index{carregarFicheiro@{carregarFicheiro}!antenas.c@{antenas.c}}
+\doxysubsubsection{\texorpdfstring{carregarFicheiro()}{carregarFicheiro()}}
+{\footnotesize\ttfamily \label{antenas_8c_af9ba0eb85c7192b5773fe57ebdd132fb} 
+void carregar\+Ficheiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}}]{lista}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{nome\+Ficheiro}{}\end{DoxyParamCaption})}
+
+
+
+Função que carrega items existentes no ficheiro. A posição do caractere no ficheiro representa as suas coordenadas. 
+
+\begin{DoxyNote}{Note}
+\+: aprimorar validações do ficheiro\+: vazio, formato fora do esperado. 
+\end{DoxyNote}
+\Hypertarget{antenas_8c_aa8d0fed68fb286ca308031251b7ed7fe}\index{antenas.c@{antenas.c}!criarLista@{criarLista}}
+\index{criarLista@{criarLista}!antenas.c@{antenas.c}}
+\doxysubsubsection{\texorpdfstring{criarLista()}{criarLista()}}
+{\footnotesize\ttfamily \label{antenas_8c_aa8d0fed68fb286ca308031251b7ed7fe} 
+\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*} criar\+Lista (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Cria e inicializa uma nova lista ligada para armazenar antenas. 
+
+Esta função aloca memória para uma nova estrutura de lista ligada e inicializa o seu apontador head para NULL, indicando que a lista está vazia.
+
+\begin{DoxyReturn}{Returns}
+Um apontador para a nova lista ligada de antenas criada. 
+\end{DoxyReturn}
+\Hypertarget{antenas_8c_a523d4767560ddfcc26aaad2cbfb86fe3}\index{antenas.c@{antenas.c}!detectarEfeitoNefasto@{detectarEfeitoNefasto}}
+\index{detectarEfeitoNefasto@{detectarEfeitoNefasto}!antenas.c@{antenas.c}}
+\doxysubsubsection{\texorpdfstring{detectarEfeitoNefasto()}{detectarEfeitoNefasto()}}
+{\footnotesize\ttfamily \label{antenas_8c_a523d4767560ddfcc26aaad2cbfb86fe3} 
+void detectar\+Efeito\+Nefasto (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}}]{lista}{}\end{DoxyParamCaption})}
+
+
+
+Detecta o efeito nefasto causado por antenas com a mesma frequência localizadas na mesma linha (coordenada x). 
+
+Esta função percorre uma lista ligada de antenas e verifica se existem múltiplas antenas com a mesma frequência e coordenada x.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lista} & apontador para a lista ligada de antenas (\doxylink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Assumiu-\/se qie O efeito nefasto ocorre quando mais do que uma antena opera na mesma frequência e está localizada na mesma linha (coordenada x). 
+\end{DoxyNote}
+\Hypertarget{antenas_8c_a83a8adaeb1f71650f8cbd48e66ff5c7f}\index{antenas.c@{antenas.c}!gravarDadosFicheiro@{gravarDadosFicheiro}}
+\index{gravarDadosFicheiro@{gravarDadosFicheiro}!antenas.c@{antenas.c}}
+\doxysubsubsection{\texorpdfstring{gravarDadosFicheiro()}{gravarDadosFicheiro()}}
+{\footnotesize\ttfamily \label{antenas_8c_a83a8adaeb1f71650f8cbd48e66ff5c7f} 
+bool gravar\+Dados\+Ficheiro (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{nome\+Ficheiro}{, }\item[{\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}}]{lista}{}\end{DoxyParamCaption})}
+
+
+
+grava dados no ficheiro binário 
+
+\begin{DoxyNote}{Note}
+detetado que não funciona corretamente. TODO\+: fazer correção na próxima entrega 
+\end{DoxyNote}
+\Hypertarget{antenas_8c_a1c7279d3d1773b4f05d486c571cd3c7e}\index{antenas.c@{antenas.c}!inserirAntena@{inserirAntena}}
+\index{inserirAntena@{inserirAntena}!antenas.c@{antenas.c}}
+\doxysubsubsection{\texorpdfstring{inserirAntena()}{inserirAntena()}}
+{\footnotesize\ttfamily \label{antenas_8c_a1c7279d3d1773b4f05d486c571cd3c7e} 
+void inserir\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}}]{lista}{, }\item[{char}]{frequencia}{, }\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
+
+
+
+insere uma nova antena em uma lista ligada de antenas. 
+
+
+\begin{DoxyEnumerate}
+\item Aloca dinamicamente memória para uma nova antena usando {\ttfamily malloc}.
+\item Inicializa os campos da nova antena ({\ttfamily frequencia}, {\ttfamily x}, {\ttfamily y}) com os valores fornecidos como parâmetros.
+\item Faz o apontador {\ttfamily next} da nova antena apontar para o atual primeiro elemento da lista (ou seja, o antigo {\ttfamily head}).
+\item Atualiza o apontador {\ttfamily head} da lista para que ele aponte para a nova antena, tornando-\/a o novo primeiro elemento da lista. 
+\begin{DoxyParams}{Parameters}
+{\em lista} & Apontador para a lista ligada de antenas. \\
+\hline
+{\em frequencia} & Caractere representando a frequência da antena. \\
+\hline
+{\em x} & Coordenada x da antena. \\
+\hline
+{\em y} & Coordenada y da antena. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyEnumerate}\Hypertarget{antenas_8c_a1c94c0f103d6f7a8803d1c1fc794ec5c}\index{antenas.c@{antenas.c}!listarAntenas@{listarAntenas}}
+\index{listarAntenas@{listarAntenas}!antenas.c@{antenas.c}}
+\doxysubsubsection{\texorpdfstring{listarAntenas()}{listarAntenas()}}
+{\footnotesize\ttfamily \label{antenas_8c_a1c94c0f103d6f7a8803d1c1fc794ec5c} 
+void listar\+Antenas (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}}]{lista}{}\end{DoxyParamCaption})}
+
+
+
+Lista antenas com base nas coordenadas do caractere no ficheiro. 
+
+Esta função percorre um ficheiro contendo informações sobre antenas \begin{DoxyReturn}{Returns}
+Uma lista de antenas listadas pelo antenas.\+txt. + as inseridas pela função inserir TODO\+: não bate certo com a inserção na lista! 
+\end{DoxyReturn}
+\Hypertarget{antenas_8c_a56a24ae78bb8022211165428a933c8fa}\index{antenas.c@{antenas.c}!removerAntena@{removerAntena}}
+\index{removerAntena@{removerAntena}!antenas.c@{antenas.c}}
+\doxysubsubsection{\texorpdfstring{removerAntena()}{removerAntena()}}
+{\footnotesize\ttfamily \label{antenas_8c_a56a24ae78bb8022211165428a933c8fa} 
+void remover\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structListaLigadaAntenas}{Lista\+Ligada\+Antenas}} \texorpdfstring{$\ast$}{*}}]{lista}{, }\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Remove uma antena específica da lista ligada. 
+
+Esta função percorre a lista ligada de antenas e remove a antena que corresponde aos parâmetros fornecidos (frequência, coordenada x e coordenada y).
+
+
+\begin{DoxyParams}{Parameters}
+{\em lista} & Apontador para a lista ligada de antenas. \\
+\hline
+{\em frequencia} & Caractere representando a frequência da antena a ser removida. \\
+\hline
+{\em x} & Coordenada x da antena a ser removida. \\
+\hline
+{\em y} & Coordenada y da antena a ser removida.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Se a antena não for encontrada, a lista permanece inalterada. 
+\end{DoxyNote}
