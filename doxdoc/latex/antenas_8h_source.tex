@@ -1,37 +1,17 @@
 \doxysection{antenas.\+h}
-\hypertarget{antenas_8h_source}{}\label{antenas_8h_source}
+\hypertarget{antenas_8h_source}{}\label{antenas_8h_source}\mbox{\hyperlink{antenas_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ }
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\ \#pragma\ once}}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \#include\ <stdio.h>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \#include\ <stdlib.h>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \#include\ <stdbool.h>}}
-\DoxyCodeLine{00013\ \ }
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntena}{Antena}}\ \{}
-\DoxyCodeLine{00019\ \ \ \ \ \ \textcolor{keywordtype}{char}\ frequencia;}
-\DoxyCodeLine{00020\ \ \ \ \ \ \textcolor{keywordtype}{int}\ x,\ y;}
-\DoxyCodeLine{00021\ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntena}{Antena}}*\ next;}
-\DoxyCodeLine{00022\ \ \}\ \mbox{\hyperlink{structAntena}{Antena}};}
-\DoxyCodeLine{00023\ \ }
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00028\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ head;}
-\DoxyCodeLine{00030\ \ \}\ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}};}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntenasFile}{AntenasFile}}\ \{}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{char}\ frequencia;}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ x,\ y;}
-\DoxyCodeLine{00035\ \}\mbox{\hyperlink{structAntenasFile}{AntenasFile}};}
-\DoxyCodeLine{00036\ \ }
-\DoxyCodeLine{00037\ \ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ \mbox{\hyperlink{antenas_8c_aa8d0fed68fb286ca308031251b7ed7fe}{criarLista}}();}
-\DoxyCodeLine{00038\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a1c7279d3d1773b4f05d486c571cd3c7e}{inserirAntena}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keywordtype}{char}\ frequencia,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
-\DoxyCodeLine{00039\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a56a24ae78bb8022211165428a933c8fa}{removerAntena}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
-\DoxyCodeLine{00040\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a1c94c0f103d6f7a8803d1c1fc794ec5c}{listarAntenas}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista);}
-\DoxyCodeLine{00041\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_af9ba0eb85c7192b5773fe57ebdd132fb}{carregarFicheiro}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ nomeFicheiro);}
-\DoxyCodeLine{00042\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a523d4767560ddfcc26aaad2cbfb86fe3}{detectarEfeitoNefasto}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista);}
-\DoxyCodeLine{00043\ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{antenas_8c_a83a8adaeb1f71650f8cbd48e66ff5c7f}{gravarDadosFicheiro}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ nomeFicheiro,\ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista);}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \#include\ "{}\mbox{\hyperlink{dados_8h}{dados.h}}"{}}}
+\DoxyCodeLine{00010\ \ }
+\DoxyCodeLine{00011\ \ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ \mbox{\hyperlink{antenas_8h_aa8d0fed68fb286ca308031251b7ed7fe}{criarLista}}();}
+\DoxyCodeLine{00012\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8h_a1c7279d3d1773b4f05d486c571cd3c7e}{inserirAntena}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keywordtype}{char}\ frequencia,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00013\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8h_a56a24ae78bb8022211165428a933c8fa}{removerAntena}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00014\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8h_a1c94c0f103d6f7a8803d1c1fc794ec5c}{listarAntenas}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista);}
+\DoxyCodeLine{00015\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8h_af9ba0eb85c7192b5773fe57ebdd132fb}{carregarFicheiro}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ nomeFicheiro);}
+\DoxyCodeLine{00016\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8h_a523d4767560ddfcc26aaad2cbfb86fe3}{detectarEfeitoNefasto}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista);}
+\DoxyCodeLine{00017\ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{antenas_8h_a83a8adaeb1f71650f8cbd48e66ff5c7f}{gravarDadosFicheiro}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ nomeFicheiro,\ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista);}
 
 \end{DoxyCode}

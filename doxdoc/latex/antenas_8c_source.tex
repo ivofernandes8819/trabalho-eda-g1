@@ -2,102 +2,104 @@
 \hypertarget{antenas_8c_source}{}\label{antenas_8c_source}\mbox{\hyperlink{antenas_8c}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}antenas.h"{}}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string.h>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00019\ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ \mbox{\hyperlink{antenas_8c_aa8d0fed68fb286ca308031251b7ed7fe}{criarLista}}()\ \{}
-\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista\ =\ (\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}));}
-\DoxyCodeLine{00021\ \ \ \ \ lista-\/>head\ =\ NULL;}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
-\DoxyCodeLine{00023\ \}}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a1c7279d3d1773b4f05d486c571cd3c7e}{inserirAntena}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keywordtype}{char}\ frequencia,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)\ \{}
-\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ nova\ =\ (\mbox{\hyperlink{structAntena}{Antena}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structAntena}{Antena}}));}
-\DoxyCodeLine{00038\ \ \ \ \ nova-\/>frequencia\ =\ frequencia;}
-\DoxyCodeLine{00039\ \ \ \ \ nova-\/>x\ =\ x;}
-\DoxyCodeLine{00040\ \ \ \ \ nova-\/>y\ =\ y;}
-\DoxyCodeLine{00041\ \ \ \ \ nova-\/>next\ =\ lista-\/>head;}
-\DoxyCodeLine{00042\ \ \ \ \ lista-\/>head\ =\ nova;}
-\DoxyCodeLine{00043\ \}}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00058\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a56a24ae78bb8022211165428a933c8fa}{removerAntena}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)\ \{}
-\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ atual\ =\ lista-\/>head,\ *anterior\ =\ NULL;}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{while}\ (atual)\ \{}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (atual-\/>x\ ==\ x\ \&\&\ atual-\/>y\ ==\ y)\ \{}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (anterior)\ anterior-\/>next\ =\ atual-\/>next;}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ lista-\/>head\ =\ atual-\/>next;}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ free(atual);}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ anterior\ =\ atual;}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ atual\ =\ atual-\/>next;}
-\DoxyCodeLine{00069\ \ \ \ \ \}}
-\DoxyCodeLine{00070\ \}}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a1c94c0f103d6f7a8803d1c1fc794ec5c}{listarAntenas}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista)\ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ atual\ =\ lista-\/>head;}
-\DoxyCodeLine{00082\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Lista\ de\ Antenas:\(\backslash\)n"{}});}
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{while}\ (atual)\ \{}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Frequência:\ \%c,\ Coordenadas:\ (\%d,\ \%d)\(\backslash\)n"{}},\ atual-\/>frequencia,\ atual-\/>x,\ atual-\/>y);}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ atual\ =\ atual-\/>next;}
-\DoxyCodeLine{00086\ \ \ \ \ \}}
-\DoxyCodeLine{00087\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Fim\ da\ lista.\(\backslash\)n"{}});}
-\DoxyCodeLine{00088\ \}}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00095\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_af9ba0eb85c7192b5773fe57ebdd132fb}{carregarFicheiro}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ nomeFicheiro)\ \{}
-\DoxyCodeLine{00096\ \ \ \ \ FILE*\ file\ =\ fopen(nomeFicheiro,\ \textcolor{stringliteral}{"{}r"{}});}
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00098\ \ \ \ \ }
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{char}\ linha[256];}
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ 0;}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(linha,\ \textcolor{keyword}{sizeof}(linha),\ file))\ \{}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ linha[x]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'}\ \&\&\ linha[x]\ !=\ \textcolor{charliteral}{'\(\backslash\)n'};\ x++)\ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((linha[x]\ >=\ \textcolor{charliteral}{'A'}\ \&\&\ linha[x]\ <=\ \textcolor{charliteral}{'Z'})\ ||\ (linha[x]\ >=\ \textcolor{charliteral}{'a'}\ \&\&\ linha[x]\ <=\ \textcolor{charliteral}{'z'})\ ||\ linha[x]\ ==\ \textcolor{charliteral}{'0'})\ \{}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{antenas_8c_a1c7279d3d1773b4f05d486c571cd3c7e}{inserirAntena}}(lista,\ linha[x],\ x,\ y);}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ y++;}
-\DoxyCodeLine{00108\ \ \ \ \ \}}
-\DoxyCodeLine{00109\ \ \ \ \ fclose(file);}
-\DoxyCodeLine{00110\ \}}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00124\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a523d4767560ddfcc26aaad2cbfb86fe3}{detectarEfeitoNefasto}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista)\ \{}
-\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ a1\ =\ lista-\/>head;}
-\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{while}\ (a1)\ \{}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ a2\ =\ lista-\/>head;\ \textcolor{comment}{//\ começa\ pela\ head}}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (a2)\ \{}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (a1-\/>frequencia\ ==\ a2-\/>frequencia\ \&\&\ a1-\/>x\ ==\ a2-\/>x)\ \{}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ 1)\ \{\ \textcolor{comment}{//\ mais\ do\ que\ uma\ antena\ com\ a\ mesma\ coordenada\ X}}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Efeito\ nefasto\ detectado:\(\backslash\)n"{}});}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena\ com\ Frequência:\ \%c,\ Linha\ \%d,\ Coordenadas:\ (\%d,\ \%d)\(\backslash\)n"{}},\ a1-\/>frequencia,a1-\/>x,\ a1-\/>x,\ a1-\/>y);}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ a2\ =\ a2-\/>next;}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ a1\ =\ a1-\/>next;}
-\DoxyCodeLine{00141\ \ \ \ \ \}}
-\DoxyCodeLine{00142\ \}}
-\DoxyCodeLine{00143\ }
-\DoxyCodeLine{00149\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{antenas_8c_a83a8adaeb1f71650f8cbd48e66ff5c7f}{gravarDadosFicheiro}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ nomeFicheiro,\ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista)\ \{}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lista\ ==\ NULL\ ||\ lista-\/>head\ ==\ NULL)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ FILE*\ file\ =\ fopen(nomeFicheiro,\ \textcolor{stringliteral}{"{}wb"{}});}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00154\ }
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ atual\ =\ lista-\/>head;}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (atual)\ \{}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(file,\ \textcolor{stringliteral}{"{}\ \%s\ \(\backslash\)n"{}},\ atual-\/>frequencia);}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ atual\ =\ atual-\/>next;}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00160\ }
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ fclose(file);}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\#include\ "{}antenas.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dados_8h}{dados.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00021\ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ \mbox{\hyperlink{antenas_8c_aa8d0fed68fb286ca308031251b7ed7fe}{criarLista}}()\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista\ =\ (\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}));}
+\DoxyCodeLine{00023\ \ \ \ \ lista-\/>head\ =\ NULL;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a1c7279d3d1773b4f05d486c571cd3c7e}{inserirAntena}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keywordtype}{char}\ frequencia,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ nova\ =\ (\mbox{\hyperlink{structAntena}{Antena}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structAntena}{Antena}}));}
+\DoxyCodeLine{00040\ \ \ \ \ nova-\/>frequencia\ =\ frequencia;}
+\DoxyCodeLine{00041\ \ \ \ \ nova-\/>x\ =\ x;}
+\DoxyCodeLine{00042\ \ \ \ \ nova-\/>y\ =\ y;}
+\DoxyCodeLine{00043\ \ \ \ \ nova-\/>next\ =\ lista-\/>head;}
+\DoxyCodeLine{00044\ \ \ \ \ lista-\/>head\ =\ nova;}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00060\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a56a24ae78bb8022211165428a933c8fa}{removerAntena}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ atual\ =\ lista-\/>head,\ *anterior\ =\ NULL;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{while}\ (atual)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (atual-\/>x\ ==\ x\ \&\&\ atual-\/>y\ ==\ y)\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (anterior)\ anterior-\/>next\ =\ atual-\/>next;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ lista-\/>head\ =\ atual-\/>next;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ free(atual);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ anterior\ =\ atual;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ atual\ =\ atual-\/>next;}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a1c94c0f103d6f7a8803d1c1fc794ec5c}{listarAntenas}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ atual\ =\ lista-\/>head;}
+\DoxyCodeLine{00084\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Lista\ de\ Antenas:\(\backslash\)n"{}});}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{while}\ (atual)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Frequência:\ \%c,\ Coordenadas:\ (\%d,\ \%d)\(\backslash\)n"{}},\ atual-\/>frequencia,\ atual-\/>x,\ atual-\/>y);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ atual\ =\ atual-\/>next;}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Fim\ da\ lista.\(\backslash\)n"{}});}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00097\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_af9ba0eb85c7192b5773fe57ebdd132fb}{carregarFicheiro}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ nomeFicheiro)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ FILE*\ file\ =\ fopen(nomeFicheiro,\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00100\ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{char}\ linha[256];}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ 0;}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(linha,\ \textcolor{keyword}{sizeof}(linha),\ file))\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ linha[x]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'}\ \&\&\ linha[x]\ !=\ \textcolor{charliteral}{'\(\backslash\)n'};\ x++)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((linha[x]\ >=\ \textcolor{charliteral}{'A'}\ \&\&\ linha[x]\ <=\ \textcolor{charliteral}{'Z'})\ ||\ (linha[x]\ >=\ \textcolor{charliteral}{'a'}\ \&\&\ linha[x]\ <=\ \textcolor{charliteral}{'z'})\ ||\ linha[x]\ ==\ \textcolor{charliteral}{'0'})\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{antenas_8c_a1c7279d3d1773b4f05d486c571cd3c7e}{inserirAntena}}(lista,\ linha[x],\ x,\ y);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00126\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{antenas_8c_a523d4767560ddfcc26aaad2cbfb86fe3}{detectarEfeitoNefasto}}(\mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ a1\ =\ lista-\/>head;}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{while}\ (a1)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ a2\ =\ lista-\/>head;\ \textcolor{comment}{//\ começa\ pela\ head}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (a2)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (a1-\/>frequencia\ ==\ a2-\/>frequencia\ \&\&\ a1-\/>x\ ==\ a2-\/>x)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ 1)\ \{\ \textcolor{comment}{//\ mais\ do\ que\ uma\ antena\ com\ a\ mesma\ coordenada\ X}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Efeito\ nefasto\ detectado:\(\backslash\)n"{}});}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena\ com\ Frequência:\ \%c,\ Linha\ \%d,\ Coordenadas:\ (\%d,\ \%d)\(\backslash\)n"{}},\ a1-\/>frequencia,a1-\/>x,\ a1-\/>x,\ a1-\/>y);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ a2\ =\ a2-\/>next;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ a1\ =\ a1-\/>next;}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00151\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{antenas_8c_a83a8adaeb1f71650f8cbd48e66ff5c7f}{gravarDadosFicheiro}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ nomeFicheiro,\ \mbox{\hyperlink{structListaLigadaAntenas}{ListaLigadaAntenas}}*\ lista)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lista\ ==\ NULL\ ||\ lista-\/>head\ ==\ NULL)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ FILE*\ file\ =\ fopen(nomeFicheiro,\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ atual\ =\ lista-\/>head;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (atual)\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(file,\ \textcolor{stringliteral}{"{}\ \%s\ \(\backslash\)n"{}},\ atual-\/>frequencia);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ atual\ =\ atual-\/>next;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00165\ \}}
 
 \end{DoxyCode}
