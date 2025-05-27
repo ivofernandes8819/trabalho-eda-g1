@@ -98,28 +98,29 @@ bool adicionarAntena(Grafo* g, Antena* a) {
  * @param distancia Distância entre as antenas.
  * @return true se a ligação foi adicionada com sucesso, false caso contrário.
  */
-Ligacao* adicionarLigacao(Grafo* g, char freqOrigem, char freqDestino, float distancia) {
-    Antena* origem = procurarAntena(g, freqOrigem);
-    Antena* destino = procurarAntena(g, freqDestino);
-    // verifica se origem ou destino são nulos
-    if (!origem || !destino) return false;
+bool adicionarLigacao(Grafo* g, char freqOrigem, char freqDestino, float distancia) {
+    /* INCOMPLETO falta adicionar validações:
+     -- verificar se origem e destino são iguais
+     -- verificar coerencia dos inputs 
+     -- implementações diversas
+    */
+   
+    Antena* origem = g->listaAntenas;
+    Antena* destino = NULL;
 
-    // verificar que frequencia origem/destino são as mesmas
-    if (origem->frequencia == destino->frequencia){
-
+    // Criar a ligação da origem para o destino
     Ligacao* novaLig = (Ligacao*)malloc(sizeof(Ligacao));
     novaLig->destino = destino;
     novaLig->distancia = distancia;
     novaLig->seguinte = origem->ligacoes;
     origem->ligacoes = novaLig;
 
-    // ligação inversa
+    // Criar a ligação inversa (do destino para a origem)
     Ligacao* ligInv = (Ligacao*)malloc(sizeof(Ligacao));
     ligInv->destino = origem;
     ligInv->distancia = distancia;
     ligInv->seguinte = destino->ligacoes;
     destino->ligacoes = ligInv;
-    }
 
     return true;
 }

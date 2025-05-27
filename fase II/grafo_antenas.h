@@ -15,6 +15,8 @@
 
 
 typedef struct Ligacao {
+    // apontador para a struct antena
+    // indica antena destino da ligação
     Antena* destino;
     float distancia;
     Ligacao* seguinte;
@@ -25,11 +27,15 @@ typedef struct Antena {
     // ponderar int em vez de float >> alterado para int
     int latitude;
     int longitude;
+    // apontador para criar lista ligada de antenas
+    // cada antena aponta para a prox da lista
     Antena* seguinte;
+    // apontador que referencia inicio da lista ligada de ligações
     Ligacao* ligacoes;
 }Antena;
 
 typedef struct {
+    // início da lista ligada de antenas
     Antena* listaAntenas;
 } Grafo;
 
