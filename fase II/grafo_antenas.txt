@@ -1,0 +1,52 @@
++-------------------+
+|      Grafo        |
+|-------------------|
+| Antena*           |----+
+| listaAntenas      |    |
++-------------------+    |
+                         |
+                         v
+                +-------------------+
+                |      Antena       |<-------------------+
+                |-------------------|                    |
+                | char frequencia   |                    |
+                | int latitude      |                    |
+                | int longitude     |                    |
+                | Antena* seguinte  |----+               |
+                | Ligacao* ligacoes |    |               |
+                +-------------------+    |               |
+                                         |               |
+                                         v               |
+                                +-------------------+    |
+                                |      Antena       |----+
+                                |       ...         |
+                                +-------------------+
+
+Cada Antena pode ter várias ligações (Ligacao):
+
+                +-------------------+
+                |      Antena       |
+                |-------------------|
+                | ...               |
+                | Ligacao* ligacoes |----+
+                +-------------------+    |
+                                         v
+                                +-------------------+
+                                |     Ligacao       |
+                                |-------------------|
+                                | Antena* destino   |----> (aponta para outra Antena)
+                                | float distancia   |
+                                | Ligacao* seguinte |----> (próxima Ligacao)
+                                +-------------------+
+                                         |
+                                         v
+                                +-------------------+
+                                |     Ligacao       |
+                                |       ...         |
+                                +-------------------+
+
+Legenda:
+- As setas (---->) representam apontadores.
+- `Grafo` tem um apontador para o início da lista ligada de `Antena`.
+- Cada `Antena` pode apontar para a próxima `Antena` (lista ligada) e para o início da sua lista de `Ligacao`.
+- Cada `Ligacao` aponta para a `Antena` de destino e para a próxima `Ligacao` (lista ligada de ligações).

@@ -8,6 +8,29 @@
 #include <stdlib.h>
 #include "grafo_antenas.h"
 
+#pragma region Estruturas
+
+typedef struct Ligacao {
+    struct Antena* destino;
+    float distancia;
+    struct Ligacao* seguinte;
+} Ligacao;
+
+typedef struct Antena {
+    char frequencia;
+    int latitude;
+    int longitude;
+    struct Antena* seguinte;
+    struct Ligacao* ligacoes;
+} Antena;
+
+typedef struct Grafo {
+    Antena* listaAntenas;
+} Grafo;
+
+#pragma endregion
+
+#pragma region grafos
 /**
  * @brief Inicializa a estrutura do grafo de antenas a partir de um ficheiro.
  *
@@ -18,6 +41,9 @@ void inicializarGrafo(Grafo* g) {
     g->listaAntenas = NULL;
 }
 
+#pragma endregion
+
+#pragma region operações antenas
 
 /**
  * @brief Cria uma nova antena com a frequência, latitude e longitude especificadas.
@@ -30,7 +56,7 @@ void inicializarGrafo(Grafo* g) {
  * @param lon   Longitude da antena (apontador).
  * @return      Apontador para a nova estrutura Antena criada.
  */
-Antena* criarAntena(char freq, float lat, float lon) {
+Antena* criarAntena(char freq, int lat, int lon) {
     Antena* nova = (Antena*)malloc(sizeof(Antena));
     nova->frequencia = freq;
     nova->latitude = lat;
@@ -72,7 +98,7 @@ bool adicionarAntena(Grafo* g, Antena* a) {
  * @param distancia Distância entre as antenas.
  * @return true se a ligação foi adicionada com sucesso, false caso contrário.
  */
-Ligacao* adicionarLigacao(Grafo* g, float freqOrigem, float freqDestino, float distancia) {
+Ligacao* adicionarLigacao(Grafo* g, char freqOrigem, char freqDestino, float distancia) {
     Antena* origem = procurarAntena(g, freqOrigem);
     Antena* destino = procurarAntena(g, freqDestino);
     // verifica se origem ou destino são nulos
@@ -98,6 +124,10 @@ Ligacao* adicionarLigacao(Grafo* g, float freqOrigem, float freqDestino, float d
     return true;
 }
 
+#pragma endregion
+
+#pragma region exibir dados
+
 /**
  * @brief Mostra o grafo de antenas.
  *
@@ -109,7 +139,7 @@ Ligacao* adicionarLigacao(Grafo* g, float freqOrigem, float freqDestino, float d
 void mostrarGrafo(const Grafo* g) {
     Antena* a = g->listaAntenas;
     while (a) {
-        printf("Antena: Frequência = %c , Latitude = %.4f, Longitude = %.4f\n",
+        printf("Antena: Frequência = %c , Latitude = %.4d, Longitude = %.4d\n",
                a->frequencia, a->latitude, a->longitude);
         Ligacao* l = a->ligacoes;
         while (l) {
@@ -120,6 +150,8 @@ void mostrarGrafo(const Grafo* g) {
         a = a->seguinte;
     }
 }
+
+#pragma endregion
 
 // NOTA: Função Não implementada
 // bool guardarGrafoBinario(const Grafo* g, const char* nomeFicheiro) {

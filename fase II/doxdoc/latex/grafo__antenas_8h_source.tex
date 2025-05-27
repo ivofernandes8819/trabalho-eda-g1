@@ -1,0 +1,44 @@
+\doxysection{grafo\+\_\+antenas.\+h}
+\hypertarget{grafo__antenas_8h_source}{}\label{grafo__antenas_8h_source}\mbox{\hyperlink{grafo__antenas_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ GRAFO\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ GRAFO\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structLigacao}{Ligacao}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ Antena*\ destino;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ distancia;}
+\DoxyCodeLine{00020\ \ \ \ \ Ligacao*\ seguinte;}
+\DoxyCodeLine{00021\ \}\ \mbox{\hyperlink{structLigacao}{Ligacao}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntena}{Antena}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{char}\ frequencia;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ ponderar\ int\ em\ vez\ de\ float\ >>\ alterado\ para\ int}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ latitude;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ longitude;}
+\DoxyCodeLine{00028\ \ \ \ \ Antena*\ seguinte;}
+\DoxyCodeLine{00029\ \ \ \ \ Ligacao*\ ligacoes;}
+\DoxyCodeLine{00030\ \}\mbox{\hyperlink{structAntena}{Antena}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}*\ listaAntenas;}
+\DoxyCodeLine{00034\ \}\ \mbox{\hyperlink{structGrafo}{Grafo}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ Protótipos\ atualizados}}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{grafo__antenas_8h_a2cf40906f4ec01419d07951f84bbb837}{inicializarGrafo}}(\mbox{\hyperlink{structGrafo}{Grafo}}*\ g);}
+\DoxyCodeLine{00038\ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{grafo__antenas_8c_a76266f264d00d5deb8e1de1378cec402}{criarAntena}}(\textcolor{keywordtype}{float}\ freq,\ \textcolor{keywordtype}{float}\ lat,\ \textcolor{keywordtype}{float}\ lon);}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{grafo__antenas_8h_a72068728dd515a0a838a96da2b4d9f9a}{adicionarAntena}}(\mbox{\hyperlink{structGrafo}{Grafo}}*\ g,\ \mbox{\hyperlink{structAntena}{Antena}}*\ a);}
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{grafo__antenas_8c_a44aeb94be220ef78abda3a3c0fb8c634}{adicionarLigacao}}(\mbox{\hyperlink{structGrafo}{Grafo}}*\ g,\ \textcolor{keywordtype}{float}\ freqOrigem,\ \textcolor{keywordtype}{float}\ freqDestino,\ \textcolor{keywordtype}{float}\ distancia);}
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{grafo__antenas_8h_ae05f7bde25fde3bdec8950e2dbee2845}{mostrarGrafo}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structGrafo}{Grafo}}*\ g);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

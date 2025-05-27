@@ -4,6 +4,10 @@
  *  @date 2025-05-18
  *  @project Trabalho pratico EDA - Grupo II
  */
+
+
+#pragma once
+
 #include <stdbool.h>
 
 #ifndef GRAFO_H
@@ -18,8 +22,9 @@ typedef struct Ligacao {
 
 typedef struct Antena {
     char frequencia;
-    float latitude;
-    float longitude;
+    // ponderar int em vez de float >> alterado para int
+    int latitude;
+    int longitude;
     Antena* seguinte;
     Ligacao* ligacoes;
 }Antena;
@@ -30,9 +35,9 @@ typedef struct {
 
 // Protótipos atualizados
 void inicializarGrafo(Grafo* g);
-Antena* criarAntena(float freq, float lat, float lon);
+Antena* criarAntena(char freq, int lat, int lon);
 bool adicionarAntena(Grafo* g, Antena* a);
-bool adicionarLigacao(Grafo* g, float freqOrigem, float freqDestino, float distancia);
+Ligacao* adicionarLigacao(Grafo* g, char freqOrigem, char freqDestino, float distancia);
 void mostrarGrafo(const Grafo* g);
 
 

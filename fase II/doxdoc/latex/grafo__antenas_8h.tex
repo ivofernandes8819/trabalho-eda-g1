@@ -1,0 +1,99 @@
+\doxysection{grafo\+\_\+antenas.\+h File Reference}
+\hypertarget{grafo__antenas_8h}{}\label{grafo__antenas_8h}\index{grafo\_antenas.h@{grafo\_antenas.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Include dependency graph for grafo\+\_\+antenas.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{grafo__antenas_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{grafo__antenas_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structLigacao}{Ligacao}}
+\item 
+struct \mbox{\hyperlink{structAntena}{Antena}}
+\item 
+struct \mbox{\hyperlink{structGrafo}{Grafo}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{grafo__antenas_8h_af6e07d083ae7871b37cec79ad5935da2}\label{grafo__antenas_8h_af6e07d083ae7871b37cec79ad5935da2} 
+typedef struct Ligacao {\bfseries Ligacao}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{grafo__antenas_8h_a2cf40906f4ec01419d07951f84bbb837}\label{grafo__antenas_8h_a2cf40906f4ec01419d07951f84bbb837} 
+void {\bfseries inicializar\+Grafo} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g)
+\begin{DoxyCompactList}\small\item\em Inicializa a estrutura do grafo de antenas a partir de um ficheiro. \end{DoxyCompactList}\item 
+\Hypertarget{grafo__antenas_8h_a5927bbcad6821d622bfb13bc1812cb4c}\label{grafo__antenas_8h_a5927bbcad6821d622bfb13bc1812cb4c} 
+\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} {\bfseries criar\+Antena} (float freq, float lat, float lon)
+\item 
+bool \mbox{\hyperlink{grafo__antenas_8h_a72068728dd515a0a838a96da2b4d9f9a}{adicionar\+Antena}} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g, \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}a)
+\begin{DoxyCompactList}\small\item\em Adiciona uma antena ao grafo. \end{DoxyCompactList}\item 
+\Hypertarget{grafo__antenas_8h_a0f15695312703d5fee4f141f050aa12a}\label{grafo__antenas_8h_a0f15695312703d5fee4f141f050aa12a} 
+bool {\bfseries adicionar\+Ligacao} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g, float freq\+Origem, float freq\+Destino, float distancia)
+\item 
+void \mbox{\hyperlink{grafo__antenas_8h_ae05f7bde25fde3bdec8950e2dbee2845}{mostrar\+Grafo}} (const \mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g)
+\begin{DoxyCompactList}\small\item\em Mostra o grafo de antenas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Ivo Fernandes \texorpdfstring{$\vert$}{|} 8819 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/05-\/18 @project Trabalho pratico EDA -\/ Grupo II 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{grafo__antenas_8h_a72068728dd515a0a838a96da2b4d9f9a}\index{grafo\_antenas.h@{grafo\_antenas.h}!adicionarAntena@{adicionarAntena}}
+\index{adicionarAntena@{adicionarAntena}!grafo\_antenas.h@{grafo\_antenas.h}}
+\doxysubsubsection{\texorpdfstring{adicionarAntena()}{adicionarAntena()}}
+{\footnotesize\ttfamily \label{grafo__antenas_8h_a72068728dd515a0a838a96da2b4d9f9a} 
+bool adicionar\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}}]{g}{, }\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{a}{}\end{DoxyParamCaption})}
+
+
+
+Adiciona uma antena ao grafo. 
+
+Esta função insere uma nova antena na lista ligada de antenas do grafo. A antena é inserida no início da lista.
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Apontador para o grafo onde a antena será adicionada. \\
+\hline
+{\em a} & Apontador para a antena a ser adicionada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se a antena foi adicionada com sucesso, false caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{grafo__antenas_8h_ae05f7bde25fde3bdec8950e2dbee2845}\index{grafo\_antenas.h@{grafo\_antenas.h}!mostrarGrafo@{mostrarGrafo}}
+\index{mostrarGrafo@{mostrarGrafo}!grafo\_antenas.h@{grafo\_antenas.h}}
+\doxysubsubsection{\texorpdfstring{mostrarGrafo()}{mostrarGrafo()}}
+{\footnotesize\ttfamily \label{grafo__antenas_8h_ae05f7bde25fde3bdec8950e2dbee2845} 
+void mostrar\+Grafo (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}}]{g}{}\end{DoxyParamCaption})}
+
+
+
+Mostra o grafo de antenas. 
+
+Esta função percorre a lista ligada de antenas no grafo e imprime as informações de cada antena, incluindo as suas ligações e distâncias.
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & Apontador para o grafo a ser mostrado. \\
+\hline
+\end{DoxyParams}

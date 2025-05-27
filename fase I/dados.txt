@@ -1,0 +1,38 @@
++---------------------------+
+|   ListaLigadaAntenas      |
+|---------------------------|
+| Antena* head              |----+
++---------------------------+    |
+                                 |
+                                 v
+                        +-------------------+
+                        |      Antena       |<-------------------+
+                        |-------------------|                    |
+                        | char frequencia   |                    |
+                        | int x            |                    |
+                        | int y            |                    |
+                        | Antena* next     |----+               |
+                        +-------------------+    |               |
+                                                 |               |
+                                                 v               |
+                                        +-------------------+    |
+                                        |      Antena       |----+
+                                        |       ...         |
+                                        +-------------------+
+
+Legenda:
+- As setas (---->) representam apontadores.
+- `ListaLigadaAntenas` tem um apontador para o início da lista ligada de `Antena`.
+- Cada `Antena` aponta para a próxima `Antena` na lista (campo `next`).
+
+Estrutura auxiliar para ficheiros:
+
++-------------------+
+|   AntenasFile     |
+|-------------------|
+| char frequencia   |
+| int x             |
+| int y             |
++-------------------+
+
+- `AntenasFile` é uma estrutura simples usada para leitura/escrita de antenas em ficheiro.

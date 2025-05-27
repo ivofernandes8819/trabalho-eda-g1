@@ -12,9 +12,9 @@ int main() {
     inicializarGrafo(&redeAntenas);
 
     // Adicionar antenas usando frequências como identificador
-    adicionarAntena(&redeAntenas, criarAntena('A', 40.123, -8.456));
-    adicionarAntena(&redeAntenas, criarAntena('B', 40.124, -8.457));
-    adicionarAntena(&redeAntenas, criarAntena('C', 40.125, -8.458));
+    adicionarAntena(&redeAntenas, criarAntena('A', 40, 8));
+    adicionarAntena(&redeAntenas, criarAntena('B', 41, 8));
+    adicionarAntena(&redeAntenas, criarAntena('C', 42, 9));
 
     // Adicionar ligações entre antenas com base na frequência
     adicionarLigacao(&redeAntenas, 'A', 'B', 2);
