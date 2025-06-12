@@ -8,11 +8,31 @@
 #include <stdlib.h>
 #include "grafo_antenas.h"
 
+// Define the structure Vertice
+typedef struct Vertice {
+    int x;
+    int y;
+    char freqAntena;
+    bool visitado;
+    struct AdjD* listaAdjacencias;
+    struct Vertice* prox;
+} Vertice;
+
+// Define the structure AdjD
+typedef struct AdjD {
+    struct Vertice* destino;
+    struct AdjD* prox;
+} AdjD;
+
 #pragma region Estruturas
+
+typedef struct GraphD {
+    struct Vertice* vertices; // Lista de vértices
+    int numVertices;          // Número de vértices no grafo
+} GraphD;
 
 typedef struct Ligacao {
     struct Antena* destino;
-    float distancia;
     struct Ligacao* seguinte;
 } Ligacao;
 
@@ -20,6 +40,8 @@ typedef struct Antena {
     char frequencia;
     int latitude;
     int longitude;
+    int aux; // Variável auxiliar para indicar sucesso na alocação
+    bool visitado; // Indica se a antena foi visitada
     struct Antena* seguinte;
     struct Ligacao* ligacoes;
 } Antena;
@@ -32,14 +54,13 @@ typedef struct Grafo {
 
 #pragma region grafos
 /**
- * @brief Inicializa a estrutura do grafo de antenas a partir de um ficheiro.
- *
+ * @brief Inicializa a estrutura do grafo de antenas
  *
   */
 
-void inicializarGrafo(Grafo* g) {
-    g->listaAntenas = NULL;
-}
+    void inicializarGrafo(Grafo* g) {
+        g->listaAntenas = NULL;
+    }
 
 #pragma endregion
 
@@ -52,77 +73,109 @@ void inicializarGrafo(Grafo* g) {
  * com os valores fornecidos e define os apontadores 'seguinte' e 'ligacoes' como NULL.
  *
  * @param freq  Caractere representando a frequência da antena.
- * @param lat   Latitude da antena.
- * @param lon   Longitude da antena (apontador).
+ * @param x   Latitude da antena.
+ * @param y   Longitude da antena (apontador).
  * @return      Apontador para a nova estrutura Antena criada.
  */
-Antena* criarAntena(char freq, int lat, int lon) {
-    Antena* nova = (Antena*)malloc(sizeof(Antena));
-    nova->frequencia = freq;
-    nova->latitude = lat;
-    nova->longitude = lon;
-    nova->seguinte = NULL;
-    nova->ligacoes = NULL;
-    return nova;
-}
+    Antena* CriaVertice(char freq, int x, int y, bool visitado, int *aux) {
+        Antena* novaAntena = (Antena*)malloc(sizeof(Antena));
+        *aux = 0;
+        if (novaAntena != NULL) {
+        novaAntena->frequencia = freq;
+        novaAntena->latitude = x;
+        novaAntena->longitude = y;
+        novaAntena->visitado = false;
+        novaAntena->seguinte = NULL;
+        novaAntena->ligacoes = NULL;
+        *aux =1; // indica que a alocação foi bem-sucedida
+        } return novaAntena;
+    }
 
-/**
- * @brief Adiciona uma antena ao grafo.
- *
- * Esta função insere uma nova antena na lista ligada de antenas do grafo.
- * A antena é inserida no início da lista.
- *
- * @param g Apontador para o grafo onde a antena será adicionada.
- * @param a Apontador para a antena a ser adicionada.
- * @return true se a antena foi adicionada com sucesso, false caso contrário.
- */
-bool adicionarAntena(Grafo* g, Antena* a) {
-    if (!a) return false;
-    a->seguinte = g->listaAntenas;
-    g->listaAntenas = a;
-    return true;
-    // TODO:
-    // falta aqui adicionar o resultado >> passar um int e retornar Antena*
-}
+// Função para criar uma Adjacência
 
+    AdjD* CriaAdjacencia(Vertice* destino, int *aux) {
+        AdjD* novaAdj = (AdjD*) malloc(sizeof(AdjD));
+        *aux = 0;
+        if (novaAdj != NULL) {
+            novaAdj->destino = destino;
+            novaAdj->prox = NULL;
+            *aux = 1;
+            return novaAdj;
+        }
+    }
 
-/**
- * @brief Adiciona uma ligação entre duas antenas no grafo.
- *
- * Esta função cria uma ligação  entre duas antenas especificadas
- * pelas suas frequências. A ligação inclui a distância entre as antenas.
- *
- * @param g Apontador para o grafo onde as antenas estão localizadas.
- * @param freqOrigem Frequência da antena de origem.
- * @param freqDestino Frequência da antena de destino.
- * @param distancia Distância entre as antenas.
- * @return true se a ligação foi adicionada com sucesso, false caso contrário.
- */
-bool adicionarLigacao(Grafo* g, char freqOrigem, char freqDestino, float distancia) {
-    /* INCOMPLETO falta adicionar validações:
-     -- verificar se origem e destino são iguais
-     -- verificar coerencia dos inputs 
-     -- implementações diversas
-    */
-   
-    Antena* origem = g->listaAntenas;
-    Antena* destino = NULL;
+    Vertice* InsereVertice(Vertice* novo, Vertice* inicio, int *res) {
+        *res = 0;
+        if (inicio == NULL ) {
+            *res = 1;
+            return novo;  // novo torna-se o inicio da lista se a lista estiver vazia
+        }
+        if (novo->x < inicio->x || (novo->x == inicio->x && novo->y < inicio->y)) {
+            novo->prox = inicio;
+            *res = 1;
+            return novo; // inserir no inicio da lista
+        }else{
+            Vertice *antes = inicio;
+            Vertice *depois = inicio;
+        while (depois != NULL &&
+                (depois->x < novo->x || (depois->x == novo->x && depois->y < novo->y))) {
+                antes = depois;
+                depois = depois->prox;
+        }
+            novo->prox = depois;
+            antes->prox = novo;
+            *res = 1;
+            return inicio; // insere de forma ordenada
+            }
+    }
 
-    // Criar a ligação da origem para o destino
-    Ligacao* novaLig = (Ligacao*)malloc(sizeof(Ligacao));
-    novaLig->destino = destino;
-    novaLig->distancia = distancia;
-    novaLig->seguinte = origem->ligacoes;
-    origem->ligacoes = novaLig;
+    Vertice* RemoveVertice(Vertice* inicio, int x, int y, int *aux){
+        *aux = 0;
+        Vertice* atual = inicio;
+        Vertice* anterior = NULL;
 
-    // Criar a ligação inversa (do destino para a origem)
-    Ligacao* ligInv = (Ligacao*)malloc(sizeof(Ligacao));
-    ligInv->destino = origem;
-    ligInv->distancia = distancia;
-    ligInv->seguinte = destino->ligacoes;
-    destino->ligacoes = ligInv;
+        // Procura o vértice pretendido
+        while (atual != NULL && !(atual->x == x && atual->y == y)) {
+            anterior = atual;
+            atual = atual->prox;
+        }
 
-    return true;
+        if (atual == NULL) {
+            return inicio; // Vértice não encontrado
+        }
+
+        if (anterior == NULL) {
+            inicio = atual->prox;  // Caso seja o primeiro vértice
+        } else {
+            anterior->prox = atual->prox;
+        }
+
+        // Reset visitado flag before freeing memory
+        atual->visitado = false;
+
+        // Ensure proper validation before freeing memory
+        if (atual != NULL) {
+            free(atual);
+        }
+
+        *aux = 1;
+        return inicio;
+    }
+
+    // Procura  vértices em profundidade
+    // IMplementado com base nos ficheiros das aulas
+    Vertice* ProcuraProfundidade(Vertice* atual, int x, int y, int *res) {
+        *res = 0;
+        // Se o vértice atual for nulo ou já tiver sido visitado, retorna NULL
+        if (atual == NULL || atual->visitado)
+            return *res;
+        // Marca o vértice atual como visitado
+        atual->visitado = true;
+
+        // Se encontrou o vértice nas coordenadas desejadas
+        if (atual->x == x && atual->y == y)
+            *res = 1;
+            return res;
 }
 
 #pragma endregion
@@ -137,33 +190,98 @@ bool adicionarLigacao(Grafo* g, char freqOrigem, char freqDestino, float distanc
  *
  * @param g Apontador para o grafo a ser mostrado.
  */
-void mostrarGrafo(const Grafo* g) {
-    Antena* a = g->listaAntenas;
-    while (a) {
-        printf("Antena: Frequência = %c , Latitude = %.4d, Longitude = %.4d\n",
-               a->frequencia, a->latitude, a->longitude);
-        Ligacao* l = a->ligacoes;
-        while (l) {
-            printf("  -> Ligada à antena com frequência %c  (Distância = %.2f km)\n",
-                   l->destino->frequencia, l->distancia);
-            l = l->seguinte;
+    void mostrarGrafo(const Grafo* g) {
+        Antena* a = g->listaAntenas;
+        while (a) {
+            printf("Antena: Frequência = %c , Latitude = %.4d, Longitude = %.4d\n",
+                a->frequencia, a->latitude, a->longitude);
+            Ligacao* l = a->ligacoes;
+            while (l) {
+                printf("  -> Ligada à antena com frequência %c \n",
+                    l->destino->frequencia);
+                l = l->seguinte;
+            }
+            a = a->seguinte;
         }
-        a = a->seguinte;
     }
-}
 
 #pragma endregion
 
-// NOTA: Função Não implementada
-// bool guardarGrafoBinario(const Grafo* g, const char* nomeFicheiro) {
-//     FILE* fp = fopen(nomeFicheiro, "wb");
-//     if (!fp) {
-//         perror("Erro ao abrir o ficheiro");
-//         return false;
-//     }
-//         //TODO: falta implementar
-//             }
-        
-//             fclose(fp);
-//             return true;
-//         }
+#pragma region Dados e Ficheiros
+
+// **** implementado com a ajuda de AI ****
+    GraphD* carregaGrafoficheiro(int argc, char* argv[]) {
+        if (argc < 2) {
+            printf("Erro: Caminho para o ficheiro não fornecido.\n");
+            return NULL;
+        }
+
+        const char* filePath = argv[1];
+        FILE* file = fopen(filePath, "r");
+        if (file == NULL) {
+            printf("Erro ao abrir o ficheiro %s\n", filePath);
+            return NULL;
+        }
+
+        GraphD* graph = (GraphD*)malloc(sizeof(GraphD));
+        if (graph == NULL) {
+            printf("Erro ao alocar memória para o grafo\n");
+            fclose(file);
+            return NULL;
+        }
+
+        graph->vertices = NULL; // Inicializa a lista de vértices
+        graph->numVertices = 0;
+
+        int lat, lon, y;
+        char freqAntena;
+
+        while (fscanf(file, "%d %d %s %c", &lat, &lon, &freqAntena) == 4) {
+            int aux;
+            Vertice* novoVertice = CriaVertice(lat, lon, freqAntena, false, &aux);
+            if (aux) {
+                graph->vertices = InsereVertice(novoVertice, graph->vertices, &aux);
+                graph->numVertices++;
+            }
+        }
+
+        fclose(file);
+        return graph;
+    }
+
+// **** Convertido do exemplo da aula + AI ****
+    bool GravaBinário(char* fileName, GraphD* g) {
+        FILE* file = fopen(fileName, "wb");
+        if (!file) {
+            return false;  // Erro ao abrir ficheiro
+        }
+
+        // Gravar vértices e adjacências
+        Vertice* verticeAtual = g->vertices;
+        while (verticeAtual) {
+            // Gravar dados do vértice
+            fwrite(&verticeAtual->x, sizeof(int), 1, file);
+            fwrite(&verticeAtual->y, sizeof(int), 1, file);
+            fwrite(&verticeAtual->freqAntena, sizeof(char), 1, file);
+
+            // Gravar lista de adjacências para este vértice
+            AdjD* currentAdj = verticeAtual->listaAdjacencias;
+            while (currentAdj) {
+                fwrite(&currentAdj->destino->x, sizeof(int), 1, file);
+                fwrite(&currentAdj->destino->y, sizeof(int), 1, file);
+                currentAdj = currentAdj->prox;
+            }
+
+            // Marcar fim de adjacências deste vértice
+            int endMarker = -1;
+            fwrite(&endMarker, sizeof(int), 1, file);
+
+            // Próximo vértice
+            verticeAtual = verticeAtual->prox;
+        }
+
+        fclose(file);
+        return true;  // Sucesso
+    }
+
+#pragma endregion

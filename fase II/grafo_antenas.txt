@@ -12,6 +12,8 @@
                 | char frequencia   |                    |
                 | int latitude      |                    |
                 | int longitude     |                    |
+                | int aux           |                    |
+                | bool visitado     |                    |
                 | Antena* seguinte  |----+               |
                 | Ligacao* ligacoes |    |               |
                 +-------------------+    |               |
@@ -25,19 +27,12 @@
 Cada Antena pode ter várias ligações (Ligacao):
 
                 +-------------------+
-                |      Antena       |
+                |     Ligacao       |
                 |-------------------|
-                | ...               |
-                | Ligacao* ligacoes |----+
-                +-------------------+    |
-                                         v
-                                +-------------------+
-                                |     Ligacao       |
-                                |-------------------|
-                                | Antena* destino   |----> (aponta para outra Antena)
-                                | float distancia   |
-                                | Ligacao* seguinte |----> (próxima Ligacao)
-                                +-------------------+
+                | Antena* destino   |----> (aponta para outra Antena)
+                | float distancia   |
+                | Ligacao* seguinte |----> (próxima Ligacao)
+                +-------------------+
                                          |
                                          v
                                 +-------------------+
@@ -45,8 +40,53 @@ Cada Antena pode ter várias ligações (Ligacao):
                                 |       ...         |
                                 +-------------------+
 
+// Estruturas adicionais para grafos direcionados (GraphD):
+
++-------------------+
+|     GraphD        |
+|-------------------|
+| Vertice* vertices |----+
+| int numVertices   |    |
++-------------------+    |
+                         v
+                +-------------------+
+                |     Vertice       |<-------------------+
+                |-------------------|                    |
+                | int x             |                    |
+                | int y             |                    |
+                | char nomeCidade[] |                    |
+                | char freqAntena   |                    |
+                | bool visitado     |                    |
+                | AdjD* listaAdj... |----+               |
+                | Vertice* prox     |    |               |
+                +-------------------+    |               |
+                                         |               |
+                                         v               |
+                                +-------------------+    |
+                                |     Vertice       |----+
+                                |       ...         |
+                                +-------------------+
+
+Cada Vertice pode ter várias adjacências (AdjD):
+
+                +-------------------+
+                |      AdjD         |
+                |-------------------|
+                | Vertice* destino  |----> (aponta para outro Vertice)
+                | AdjD* prox        |----> (próxima AdjD)
+                +-------------------+
+                                         |
+                                         v
+                                +-------------------+
+                                |      AdjD         |
+                                |       ...         |
+                                +-------------------+
+
 Legenda:
 - As setas (---->) representam apontadores.
 - `Grafo` tem um apontador para o início da lista ligada de `Antena`.
-- Cada `Antena` pode apontar para a próxima `Antena` (lista ligada) e para o início da sua lista de `Ligacao`.
-- Cada `Ligacao` aponta para a `Antena` de destino e para a próxima `Ligacao` (lista ligada de ligações).
+- Cada `Antena` pode apontar para a próxima `Antena` e para o início da sua lista de `Ligacao`.
+- Cada `Ligacao` aponta para a `Antena` de destino e para a próxima `Ligacao`.
+- `GraphD` tem um apontador para o início da lista de `Vertice`.
+- Cada `Vertice` pode apontar para o próximo `Vertice` e para o início da sua lista de adjacências (`AdjD`).
+- Cada `AdjD` aponta para o `Vertice` de destino e para a próxima adjacência.

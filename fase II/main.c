@@ -6,25 +6,40 @@
  */
 #include <stdio.h>
 #include "grafo_antenas.h"
+#include "grafo_antenas.c"
 
 int main() {
     Grafo redeAntenas;
     inicializarGrafo(&redeAntenas);
 
     // Adicionar antenas usando frequências como identificador
-    adicionarAntena(&redeAntenas, criarAntena('A', 40, 8));
-    adicionarAntena(&redeAntenas, criarAntena('B', 41, 8));
-    adicionarAntena(&redeAntenas, criarAntena('C', 42, 9));
+    CriaVertice(&redeAntenas, 'A', 40, 8, "Antena A");
+    CriaVertice(&redeAntenas, 'B', 41, 8, "Antena B");
+    CriaVertice(&redeAntenas, 'C', 42, 9, "Antena C");
 
     // Adicionar ligações entre antenas com base na frequência
-    adicionarLigacao(&redeAntenas, 'A', 'B', 2);
-    adicionarLigacao(&redeAntenas, 'B', 'C', 3);
-    adicionarLigacao(&redeAntenas, 'A', 'C', 1);
+    CriaAdjacencia(&redeAntenas, 'A');
+    CriaAdjacencia(&redeAntenas, 'B');
+    CriaAdjacencia(&redeAntenas, 'C');
+    CriaAdjacencia(&redeAntenas, 'A');
 
     // Mostrar o grafo
     mostrarGrafo(&redeAntenas);
 
     // Guardar num ficheiro binário -- NAO IMPLEMENTADO
+    carregaGrafoficheiro("rede_antenas.txt", &redeAntenas);
 
+    // Gravar o grafo em formato binário
+    GravaBinário("rede_antenas.bin", &redeAntenas);
     return 0;
+
+    // Procurar grafos em profundidade
+    int resultado;
+    Vertice* encontrado = ProcuraProfundidade(redeAntenas.listaAntenas, 41, 8, &resultado);
+    if (resultado) {
+        printf("Antena encontrada: Frequência = %c, Latitude = %d, Longitude = %d\n",
+               encontrado->freqAntena, encontrado->x, encontrado->y);
+    } else {
+        printf("Antena não encontrada.\n");
+    }
 }
